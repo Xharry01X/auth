@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Mania</title>
+    <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+   <div x-data="{username:'', password:''}">
+      <form hx-post="/submit" hx-target="#response" @submit.prevent="validateForm">
+          <div>
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" x-model="username" required />
+              <p id="username-error" style="color:red;"></p> <!-- Error message for username -->
+          </div>
+          <div>
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" x-model="password" required />
+              <p id="password-error" style="color:red;"></p> <!-- Error message for password -->
+          </div>
+          <button type="submit">Submit</button>
+          <div id="response"></div>
+      </form>
+   </div>
+
+   <script>
+    function validateForm(){
+        let isValid = true;
+
+        // Reset error messages
+        document.getElementById('username-error').innerText = '';
+        document.getElementById('password-error').innerText = '';
+
+        // Validate username
+        if (this.username.trim() === '') {
+            document.getElementById('username-error').innerText = 'Username is required.';
+            isValid = false;
+        } else if (this.username.length < 3 || this.username.length > 20) {
+            document.getElementById('username-error').innerText = 'Username must be between 3 and 20 characters.';
+            isValid = false;
+        }
+
+        // Validate password
+        if (this.password.trim() === '') {
+            document.getElementById('password-error').innerText = 'Password is required.';
+            isValid = false;
+        } else if (this.password.length < 6) {
+            document.getElementById('password-error').innerText = 'Password must be at least 6 characters.';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+   </script>
+</body>
+</html>
