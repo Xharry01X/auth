@@ -1,13 +1,25 @@
 package main
 
-import "github.com/go-fuego/fuego"
+import (
+	"log"
+	"net/http"
+
+	"github.com/harshit-1245/auth/backend/database"
+	"github.com/harshit-1245/auth/backend/router"
+	"github.com/gorilla/mux"
+)
 
 func main() {
-	s := fuego.NewServer()
+	// Initialize the database connection
+	database.InitDB("mongodb://localhost:27017", "testdb")
 
-	fuego.Get(s, "/", func(c fuego.ContextNoBody) (string, error) {
-		return "Hello, World!", nil
-	})
+	// Create a new mux router
+	r := mux.NewRouter()
 
-	s.Run()
+	// Register routes
+	router.RegisterRoutes(r)
+
+	// Start the server
+	log.Println("Server running on port 8000")
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
