@@ -2,13 +2,12 @@ package models
 
 import (
 	"golang.org/x/crypto/bcrypt"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type User struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	Username string             `bson:"username"`
-	Password string             `bson:"password"`
+	ID       int
+	Username string
+	Password string
 }
 
 func (u *User) HashPassword(password string) error {
