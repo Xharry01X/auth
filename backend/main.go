@@ -1,20 +1,23 @@
 package main
 
 import (
-	"log"
-	"net/http"
+    "log"
+    "net/http"
 
-	"github.com/gorilla/mux"
-	"github.com/harshit-1245/auth/backend/database"
-	"github.com/harshit-1245/auth/backend/router"
+    "github.com/gorilla/mux"
+    "github.com/harshit-1245/auth/backend/database"
+    "github.com/harshit-1245/auth/backend/router"
 )
 
 func main() {
-	database.InitDB()
-	defer database.CloseDB()
+    err := database.InitDB()
+    if err != nil {
+        log.Fatalf("Error initializing database: %v", err)
+    }
+    defer database.DB.Close()
 
-	r := mux.NewRouter()
-	router.RegisterRoutes(r)
+    r := mux.NewRouter()
+    router.RegisterRoutes(r)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+    log.Fatal(http.ListenAndServe(":8080", r))
 }

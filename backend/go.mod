@@ -33,7 +33,7 @@ require (
 	github.com/perimeterx/marshmallow v1.1.5 // indirect
 	github.com/tetratelabs/wazero v1.7.3 // indirect
 	github.com/tursodatabase/go-libsql v0.0.0-20240429120401-651096bbee0b // indirect
-	github.com/tursodatabase/libsql-client-go v0.0.0-20240624133341-66b6e0d2ee5f // indirect
+	github.com/tursodatabase/libsql-client-go v0.0.0-20240628122535-1c47b26184e8 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
