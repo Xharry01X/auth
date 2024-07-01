@@ -3,6 +3,7 @@ module github.com/harshit-1245/auth/backend
 go 1.22.0
 
 require (
+	github.com/a-h/templ v0.2.731 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
@@ -43,7 +44,7 @@ require (
 	go.mongodb.org/mongo-driver v1.15.1 // indirect
 	golang.org/x/crypto v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20240613232115-7f521ea00fb8 // indirect
-	golang.org/x/net v0.22.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
