@@ -1,13 +1,16 @@
 package main
 
 import (
-    "log"
-    "net/http"
-    "github.com/gorilla/mux"
-    "github.com/gorilla/handlers"
-    "github.com/harshit-1245/auth/backend/database"
-    "github.com/harshit-1245/auth/backend/router"
-    "github.com/joho/godotenv"
+	"log"
+	"net/http"
+
+	
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"github.com/harshit-1245/auth/backend/database"
+	"github.com/harshit-1245/auth/backend/router"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -29,6 +32,8 @@ func main() {
     // Setup router and routes
     r := mux.NewRouter()
     router.RegisterRoutes(r)
+
+
 
     // Configure CORS
     corsMiddleware := handlers.CORS(

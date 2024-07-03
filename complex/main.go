@@ -30,14 +30,14 @@ type MyResponse struct{
 	fuego.Use(s, cors.Default().Handler)
 	fuego.Use(s, chiMiddleware.Compress(5, "text/html", "text/css"))
 
-	// Fuego 🔥 handler with automatic OpenAPI generation, validation, (de)serialization and error handling
+	
 	fuego.Post(s, "/name", func(c *fuego.ContextWithBody[Received]) (MyResponse, error) {
 		data, err := c.Body()
 		if err != nil {
 			return MyResponse{}, err
 		}
 
-		// read the request header test
+		
 		if c.Request().Header.Get("test") != "test" {
 			return MyResponse{}, errors.New("test header not found")
 		}
@@ -69,13 +69,13 @@ func (r *Received) InTransform(context.Context) error {
 	return nil
 }
 
-// OutTransform will be called before sending data
+
 func (r *MyResponse) OutTransform(context.Context) error {
 	r.Message = strings.ToUpper(r.Message)
 	return nil
 }
 
 var (
-	_ fuego.InTransformer  = &Received{}   // Ensure that *Received implements fuego.InTransformer
-	_ fuego.OutTransformer = &MyResponse{} // Ensure that *MyResponse implements fuego.OutTransformer
+	_ fuego.InTransformer  = &Received{}  
+	_ fuego.OutTransformer = &MyResponse{}
 )
